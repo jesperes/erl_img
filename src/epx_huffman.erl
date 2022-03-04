@@ -8,7 +8,7 @@
 -export([decode_dht/1, encode_dht/1]).
 -export([build_decoder/1,build_encoder/1]).
 
--compile(export_all).
+-compile([export_all, nowarn_export_all]).
 
 -import(lists, [reverse/1, map/2]).
 

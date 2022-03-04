@@ -22,7 +22,7 @@
          compress_gif/2]).
 
 -export([rbits8/1, rbits/2]).
--compile(export_all).
+-compile([export_all, nowarn_export_all]).
 
 -import(lists, [reverse/1, foldl/3]).
 
