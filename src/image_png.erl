@@ -264,7 +264,7 @@ write_chunk_crc(Fd, ChunkName, Chunk, Z) ->
     Binary = iolist_to_binary(Chunk),
     Length = byte_size(Binary),
     ChunkNameBinary = list_to_binary(ChunkName),
-    CRC32 = zlib:crc32(Z, <<ChunkNameBinary/binary, Binary/binary>>),
+    CRC32 = erlang:crc32(Z, <<ChunkNameBinary/binary, Binary/binary>>),
     file:write(Fd, <<(Length):32, ChunkNameBinary/binary, Binary/binary, (CRC32):32>>).
 
 write(Fd, IMG) ->
@@ -676,7 +676,7 @@ skip_chunk(Fd, Length) ->
     file:position(Fd, {cur,Length+4}).
 
 valid_crc32(Binary, Value, Z) ->
-    CRC32 = zlib:crc32(Z, Binary),
+    CRC32 = erlang:crc32(Z, Binary),
     ?dbg("crc check: ~p == ~p\n", [CRC32, Value]),
     CRC32 == Value.
 
